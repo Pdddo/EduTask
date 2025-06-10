@@ -1,14 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.PrimaryController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" spacing="10.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.PrimaryController">
    <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
+      <Label text="EduTask - Your To-Do List">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      
+      <Label text="High Priority">
+         <font><Font name="System Bold" size="16.0" /></font>
+      </Label>
+      <TableView fx:id="highPriorityTable" prefHeight="150.0">
+        <columns>
+          <TableColumn fx:id="highDoneCol" prefWidth="50.0" text="Done" />
+          <TableColumn fx:id="highDescCol" prefWidth="450.0" text="Description" />
+          <TableColumn fx:id="highDeadlineCol" prefWidth="150.0" text="Deadline" />
+        </columns>
+      </TableView>
+      
+      <Label text="Medium Priority">
+         <font><Font name="System Bold" size="16.0" /></font>
+      </Label>
+      <TableView fx:id="mediumPriorityTable" prefHeight="150.0">
+        <columns>
+          <TableColumn fx:id="mediumDoneCol" prefWidth="50.0" text="Done" />
+          <TableColumn fx:id="mediumDescCol" prefWidth="450.0" text="Description" />
+          <TableColumn fx:id="mediumDeadlineCol" prefWidth="150.0" text="Deadline" />
+        </columns>
+      </TableView>
+      
+      <Label text="Low Priority">
+         <font><Font name="System Bold" size="16.0" /></font>
+      </Label>
+      <TableView fx:id="lowPriorityTable" prefHeight="150.0">
+        <columns>
+          <TableColumn fx:id="lowDoneCol" prefWidth="50.0" text="Done" />
+          <TableColumn fx:id="lowDescCol" prefWidth="450.0" text="Description" />
+          <TableColumn fx:id="lowDeadlineCol" prefWidth="150.0" text="Deadline" />
+        </columns>
+      </TableView>
+      
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Button fx:id="addTaskButton" onAction="#switchToSecondary" prefHeight="40.0" text="Add New Task" />
+            <Button fx:id="deleteTaskButton" onAction="#deleteSelectedTask" prefHeight="40.0" text="Delete Task" style="-fx-background-color: #ff6b6b;" />
+         </children>
+      </HBox>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
