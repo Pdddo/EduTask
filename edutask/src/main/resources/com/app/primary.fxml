@@ -1,16 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.PrimaryController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #eef5ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.app.PrimaryController">
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+      <Insets top="30.0" bottom="30.0" left="40.0" right="40.0"/>
    </padding>
+   <children>
+      <Label text="📝 EduTask - Tetap Konsisten, Jadi Lebih Baik!">
+         <font>
+            <Font name="Arial Bold" size="26.0" />
+         </font>
+         <style>
+            -fx-text-fill: #2b3a55;
+         </style>
+      </Label>
+
+      <Label text="📌 High Priority Tasks" style="-fx-font-size: 16px; -fx-text-fill: #d63031;" />
+      <TableView fx:id="highPriorityTable" prefHeight="130.0" style="-fx-background-color: #fff;">
+        <columns>
+          <TableColumn fx:id="highDoneCol" prefWidth="50.0" text="✓" />
+          <TableColumn fx:id="highDescCol" prefWidth="400.0" text="Task" />
+          <TableColumn fx:id="highDeadlineCol" prefWidth="200.0" text="Due" />
+        </columns>
+      </TableView>
+
+      <Label text="🟡 Medium Priority Tasks" style="-fx-font-size: 16px; -fx-text-fill: #f39c12;" />
+      <TableView fx:id="mediumPriorityTable" prefHeight="130.0" style="-fx-background-color: #fff;">
+        <columns>
+          <TableColumn fx:id="mediumDoneCol" prefWidth="50.0" text="✓" />
+          <TableColumn fx:id="mediumDescCol" prefWidth="400.0" text="Task" />
+          <TableColumn fx:id="mediumDeadlineCol" prefWidth="200.0" text="Due" />
+        </columns>
+      </TableView>
+
+      <Label text="🟢 Low Priority Tasks" style="-fx-font-size: 16px; -fx-text-fill: #27ae60;" />
+      <TableView fx:id="lowPriorityTable" prefHeight="130.0" style="-fx-background-color: #fff;">
+        <columns>
+          <TableColumn fx:id="lowDoneCol" prefWidth="50.0" text="✓" />
+          <TableColumn fx:id="lowDescCol" prefWidth="400.0" text="Task" />
+          <TableColumn fx:id="lowDeadlineCol" prefWidth="200.0" text="Due" />
+        </columns>
+      </TableView>
+
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Button fx:id="addTaskButton" onAction="#switchToSecondary" prefHeight="40.0" text="➕ Add Task" style="-fx-background-color: #74b9ff; -fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button fx:id="deleteTaskButton" onAction="#deleteSelectedTask" prefHeight="40.0" text="🗑 Delete Task" style="-fx-background-color: #ff7675; -fx-text-fill: white; -fx-font-weight: bold;" />
+         </children>
+      </HBox>
+
+      <Label text="✨ Kembangkan kebiasaan baru. Satu tugas pada satu waktu." style="-fx-text-fill: #636e72; -fx-font-size: 12px;"/>
+   </children>
 </VBox>
