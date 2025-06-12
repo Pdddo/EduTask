@@ -2,28 +2,32 @@ package com.app;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 
-    // Daftar statis untuk menyimpan tugas agar data tidak hilang saat berpindah scene
+    // Deklarasi ObservableList
     private static ObservableList<Task> highPriorityTasks = FXCollections.observableArrayList();
     private static ObservableList<Task> mediumPriorityTasks = FXCollections.observableArrayList();
     private static ObservableList<Task> lowPriorityTasks = FXCollections.observableArrayList();
 
-    // --- FXML TABLE REFERENCES ---
+    // Deklarasi Tabel
     @FXML private TableView<Task> highPriorityTable;
     @FXML private TableView<Task> mediumPriorityTable;
     @FXML private TableView<Task> lowPriorityTable;
 
-    // --- FXML COLUMN REFERENCES ---
     // High Priority Columns
     @FXML private TableColumn<Task, Boolean> highDoneCol;
     @FXML private TableColumn<Task, String> highDescCol;
@@ -39,15 +43,18 @@ public class PrimaryController {
     @FXML private TableColumn<Task, String> lowDescCol;
     @FXML private TableColumn<Task, LocalDate> lowDeadlineCol;
 
+    // Button Untuk Menambah Task (Berpindah Scene)
+    @FXML private Button addTaskButton;
+
+    // Button untuk Menghapus Task
+    @FXML private Button deleteTaskButton;
+
 
     @FXML
     public void initialize() {
         highPriorityTable.setItems(highPriorityTasks);
         mediumPriorityTable.setItems(mediumPriorityTasks);
         lowPriorityTable.setItems(lowPriorityTasks);
-
-        // Mengatur setiap kolom untuk tahu data mana yang harus ditampilkan dari objek Task
-        // Argumen "description", "deadline", "done" harus SAMA PERSIS dengan nama properti di Task.java
         
         // Setup High Priority Table
         highDoneCol.setCellValueFactory(new PropertyValueFactory<>("done"));
@@ -73,11 +80,13 @@ public class PrimaryController {
         lowPriorityTable.setEditable(true);
     }
     
+    // Setup untuk checkbox
     private void setupEditableCheckBox(TableColumn<Task, Boolean> column) {
         column.setCellFactory(CheckBoxTableCell.forTableColumn(column));
         column.setEditable(true);
     }
 
+    // Fungsi untuk Menambah Task
     public static void addTask(Task task) {
         if (task == null) return;
 
@@ -91,14 +100,13 @@ public class PrimaryController {
         }
     }
     
+    // Fungsi untuk Menghapus Task
     @FXML
     private void deleteSelectedTask() {
-        // Mencoba menghapus dari setiap tabel. Hanya satu yang akan berhasil.
         if (tryDeleteFrom(highPriorityTable, highPriorityTasks)) return;
         if (tryDeleteFrom(mediumPriorityTable, mediumPriorityTasks)) return;
         if (tryDeleteFrom(lowPriorityTable, lowPriorityTasks)) return;
     }
-
     private boolean tryDeleteFrom(TableView<Task> table, ObservableList<Task> list) {
         Task selected = table.getSelectionModel().getSelectedItem();
         if (selected != null) {
@@ -109,7 +117,28 @@ public class PrimaryController {
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
+      private void switchToSecondary() throws IOException {
+        // Buat jendela baru
+        Stage popupStage = new Stage();
+        popupStage.setTitle("Add New Task");
+
+        // Muat FXML untuk jendela baru
+        Parent root = FXMLLoader.load(App.class.getResource("secondary.fxml"));
+
+        // Buat Scene Baru
+        Scene popupScene = new Scene(root);
+
+        // Pasang Scene ke jendela baru
+        popupStage.setScene(popupScene);
+
+        // Atur agar jendela utama tidak bisa di-klik
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.initOwner(addTaskButton.getScene().getWindow());
+
+        // Atur agar jendela pop-up tidak bisa di-resize
+        popupStage.setResizable(false);
+
+        // Menampilkan jendela pop-up dan tunggu sampai pengguna selesai
+        popupStage.showAndWait();
     }
 }

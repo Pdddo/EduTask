@@ -1,31 +1,25 @@
 package com.app;
 
 import java.time.LocalDate;
-
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
-//Ini adalah pilar PEWARISAN (Inheritance)
 public class DeadlineTask extends Task {
 
-    // Properti tambahan, hanya ada di kelas ini
+    // Properti Khusus class ini
     private final ObjectProperty<LocalDate> deadline;
 
+    // Constructor
     public DeadlineTask(String description, String priority, LocalDate deadline) {
-        // Memanggil constructor dari kelas induk (Task) untuk menginisialisasi
-        // properti description dan priority.
         super(description, priority);
-        
-        // Menginisialisasi properti spesifik kelas ini
         this.deadline = new SimpleObjectProperty<>(deadline);
     }
 
-    // Metode khusus untuk mengakses properti deadline
-    public ObjectProperty<LocalDate> deadlineProperty() {
-        return deadline;
-    }
-
+    // Getter dan Setter
     public LocalDate getDeadline() {
         return deadline.get();
+    }
+    public ObjectProperty<LocalDate> deadlineProperty() {
+        return deadline;
     }
 }
