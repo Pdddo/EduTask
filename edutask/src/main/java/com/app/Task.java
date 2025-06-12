@@ -5,9 +5,6 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
-// Hanya berisi properti dan metode yang umum untuk SEMUA jenis tugas.
-// Ini adalah pilar ABSTRAKSI.
 public abstract class Task {
 
     private final StringProperty description;
@@ -20,7 +17,7 @@ public abstract class Task {
         this.done = new SimpleBooleanProperty(false);
     }
 
-    // Properti dan metode yang diwariskan ke semua kelas turunan
+    // Methods getter dan setter
     public StringProperty descriptionProperty() {
         return description;
     }
