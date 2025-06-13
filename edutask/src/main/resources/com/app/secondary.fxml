@@ -45,6 +45,6 @@
          </children>
       </HBox>
 
-      <Label text="💡 Gunakan waktu terbaikmu hari ini." style="-fx-text-fill: #636e72; -fx-font-size: 12px;" />
+      <Label text="💡 Deskripsikan Tugas Sesingkat Mungkin (Max. 62 Karakter)" style="-fx-text-fill: #636e72; -fx-font-size: 12px;" />
    </children>
 </VBox>
