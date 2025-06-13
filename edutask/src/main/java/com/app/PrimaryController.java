@@ -2,6 +2,7 @@ package com.app;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public class PrimaryController {
     // Button untuk Menghapus Task
     @FXML private Button deleteTaskButton;
 
-
+    
     @FXML
     public void initialize() {
         highPriorityTable.setItems(highPriorityTasks);

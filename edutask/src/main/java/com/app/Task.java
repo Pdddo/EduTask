@@ -1,6 +1,9 @@
 package com.app;
 
+import java.time.LocalDate;
+
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,6 +13,7 @@ public abstract class Task {
     private final StringProperty description;
     private final StringProperty priority;
     private final BooleanProperty done;
+    public abstract ObjectProperty<LocalDate> deadlineProperty();
 
     public Task(String description, String priority) {
         this.description = new SimpleStringProperty(description);
@@ -34,9 +38,4 @@ public abstract class Task {
         return priority.get();
     }
     
-    // Override toString() untuk tampilan dasar di daftar
-    @Override
-    public String toString() {
-        return (done.get() ? "[Selesai] " : "") + description.get();
-    }
 }

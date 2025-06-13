@@ -10,7 +10,7 @@
       <Insets top="30.0" bottom="30.0" left="40.0" right="40.0"/>
    </padding>
    <children>
-      <Label text="📝 EduTask - Tetap Konsisten, Jadi Lebih Baik!">
+      <Label text="📝 EduTask - Ada Tugas Hari Ini?">
          <font>
             <Font name="Arial Bold" size="26.0" />
          </font>
@@ -53,6 +53,6 @@
          </children>
       </HBox>
 
-      <Label text="✨ Kembangkan kebiasaan baru. Satu tugas pada satu waktu." style="-fx-text-fill: #636e72; -fx-font-size: 12px;"/>
+      <Label text="✨ Jangan dicatat doang, kerjain donggg." style="-fx-text-fill: #636e72; -fx-font-size: 12px;"/>
    </children>
 </VBox>
