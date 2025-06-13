@@ -2,6 +2,7 @@ package com.app;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -38,6 +39,14 @@ public class SecondaryController {
         hasDeadlineCheckBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
             deadlineContainer.setVisible(isNowSelected);
             deadlineContainer.setManaged(isNowSelected);
+        });
+        
+        // Membatasi panjang deskripsi
+        final int maxLength = 62;
+        descriptionField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.length() > maxLength) {
+                descriptionField.setText(newValue.substring(0, maxLength));
+            }
         });
     }
 
